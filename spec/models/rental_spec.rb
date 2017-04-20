@@ -1,5 +1,11 @@
 require "rails_helper"
 
 RSpec.describe Rental, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "Validations" do
+    it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:daily_rate) }
+    it { should validate_numericality_of(:daily_rate) }
+    it { should_not allow_value(-1).for(:daily_rate) }
+    it { should_not allow_value(1.5).for(:daily_rate) }
+  end
 end
