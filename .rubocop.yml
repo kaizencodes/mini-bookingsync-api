@@ -11,9 +11,22 @@ AllCops:
     - 'db/schema.rb'
     - 'db/seeds.rb'
     - 'bin/**/*'
+    - !ruby/regexp /old_and_unused\.rb$/
+
+Metrics/AbcSize:
+  Max: 30
+
+Metrics/CyclomaticComplexity:
+  Max: 10
 
 Metrics/LineLength:
   Max: 120
+
+Metrics/MethodLength:
+  Max: 20
+
+Metrics/PerceivedComplexity:
+  Max: 10
 
 Style/Documentation:
   Enabled: false

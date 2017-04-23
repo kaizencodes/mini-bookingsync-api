@@ -9,7 +9,7 @@ RSpec.describe RentalsController, type: :controller do
 
   describe "GET #index" do
     it "assigns all rentals as @rentals" do
-      get :index, params: {}
+      get :index
       expect(assigns(:rentals)).to eq(Rental.all)
     end
   end
@@ -46,17 +46,15 @@ RSpec.describe RentalsController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) { { name: "Updated name", daily_rate: 40 } }
-
       it "updates the requested rental" do
-        put :update, params: { id: @rental.id, rental: new_attributes }
+        put :update, params: { id: @rental.id, rental: new_params }
         @rental.reload
-        expect(@rental.name).to eq(new_attributes[:name])
-        expect(@rental.daily_rate).to eq(new_attributes[:daily_rate])
+        expect(@rental.name).to eq(new_params[:name])
+        expect(@rental.daily_rate).to eq(new_params[:daily_rate])
       end
 
       it "assigns the requested rental as @rental" do
-        put :update, params: { id: @rental.id, rental: new_attributes }
+        put :update, params: { id: @rental.id, rental: new_params }
         expect(assigns(:rental)).to eq(@rental)
       end
     end

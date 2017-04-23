@@ -8,4 +8,8 @@ RSpec.describe Rental, type: :model do
     it { should_not allow_value(-1).for(:daily_rate) }
     it { should_not allow_value(1.5).for(:daily_rate) }
   end
+
+  context "Associations" do
+    it { should have_many(:bookings) }
+  end
 end
