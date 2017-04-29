@@ -38,6 +38,11 @@ class BookingsController < ApplicationController
     @booking.destroy
   end
 
+  def calculate_price
+    price = Booking.calculate_price(params[:from], params[:to], params[:rental_id])
+    render json: price
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

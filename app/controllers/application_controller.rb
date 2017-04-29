@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-  before_filter :authenticate
+  before_action :authenticate
 
   private
 

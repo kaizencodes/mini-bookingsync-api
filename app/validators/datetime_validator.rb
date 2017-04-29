@@ -1,19 +1,21 @@
 # rubocop:disable Style/GuardClause
 class DatetimeValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
-    return unless value
+    return false unless value
 
     if options[:before]
       valid = prepare_comparable(options[:before], record)
+      return false unless valid
       if value > valid
-        record.errors[attribute] << (options[:message] || "has to be before #{options[:before]}")
+        record.errors[attribute] << (options[:message] || "has to be before #{valid}")
       end
     end
 
     if options[:after]
       valid = prepare_comparable(options[:after], record)
+      return false unless valid
       if value < valid
-        record.errors[attribute] << (options[:message] || "has to be after #{options[:after]}")
+        record.errors[attribute] << (options[:message] || "has to be after #{valid}")
       end
     end
   end

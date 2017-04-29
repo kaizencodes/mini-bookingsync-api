@@ -91,13 +91,13 @@ RSpec.describe Booking, type: :model do
 
   describe "Minimum booking" do
     it "should allow one day booking" do
-      booking = build(:booking, start_at: Date.tomorrow, end_at: Date.tomorrow)
+      booking = build(:booking, start_at: Date.tomorrow, end_at: 2.days.from_now)
       expect(booking.valid?).to be(true)
     end
 
-    it "should allow more than a day booking" do
-      booking = build(:booking, start_at: Date.tomorrow, end_at: 2.days.from_now)
-      expect(booking.valid?).to be(true)
+    it "should not allow less than a day booking" do
+      booking = build(:booking, start_at: Date.tomorrow, end_at: Date.tomorrow)
+      expect(booking.valid?).to be(false)
     end
   end
 end
